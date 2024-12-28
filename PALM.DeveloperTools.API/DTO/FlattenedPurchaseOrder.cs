@@ -11,6 +11,8 @@ namespace PALM.DeveloperTools.API.DTO
 {
     public class FlattenedPurchaseOrder : IPOHeaderDetails, IPOLineDetails, IPOLineShipDetails, IPODistributionDetails
     {
+        public FlattenedPurchaseOrder() { }
+
         #region Header
         [Required]
         public POHeaderActions POHeaderAction { get; set; }

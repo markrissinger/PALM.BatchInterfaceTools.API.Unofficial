@@ -1,8 +1,8 @@
 ﻿namespace PALM.DeveloperTools.API.Helpers.Utilities
 {
-    public static class InputValidation
+    public static class FileHelpers
     {
-        public static bool FileValidation(IFormFile file)
+        public static bool InputFileTypeValidation(IFormFile file)
         {
             // Check file length
             if (file.Length <= 0)
@@ -18,6 +18,11 @@
                     return false;
             }
             return true;
+        }
+
+        public static string FileNameGenerator(string interfaceID, string? agency, string? agencyBusinessSystem)
+        {
+            return $"{agency ?? "Agency"}_{interfaceID}_{agencyBusinessSystem ?? "ABS"}_{DateTime.Now.ToString("yyyyMMdd-HHmmss")}.txt";
         }
     }
 }
