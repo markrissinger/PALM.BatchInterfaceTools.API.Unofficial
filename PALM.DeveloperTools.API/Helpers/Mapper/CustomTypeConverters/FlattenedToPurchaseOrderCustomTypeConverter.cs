@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using PALM.DeveloperTools.API.DTO;
-using PALM.InterfaceLayouts.Unofficial.Entities.InterfaceLayouts.PurchaseOrders.InboundEncumbranceLoad;
+using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PALM.DeveloperTools.API.Helpers.Mappers
+namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
 {
     internal class FlattenedToPurchaseOrderCustomTypeConverter : ITypeConverter<List<FlattenedPurchaseOrder>, List<POHeaderDetails>>
     {
@@ -21,10 +21,10 @@ namespace PALM.DeveloperTools.API.Helpers.Mappers
 
             // Group by header fields
             var groupedPOsByHeaders = source
-                .GroupBy(flatPo => new 
-                { 
-                    flatPo.POHeaderAction, 
-                    flatPo.BusinessUnit, 
+                .GroupBy(flatPo => new
+                {
+                    flatPo.POHeaderAction,
+                    flatPo.BusinessUnit,
                     flatPo.POID,
                     flatPo.HoldStatus,
                     flatPo.PODate,
@@ -38,10 +38,10 @@ namespace PALM.DeveloperTools.API.Helpers.Mappers
                     flatPo.SourceSystemUserID
                 });
 
-            foreach(var groupedPOByHeader in groupedPOsByHeaders)
+            foreach (var groupedPOByHeader in groupedPOsByHeaders)
             {
                 // Setup header
-                POHeaderDetails poHeader = new POHeaderDetails();                
+                POHeaderDetails poHeader = new POHeaderDetails();
                 MapPOHeader(groupedPOByHeader.First(), poHeader); // using the first instance since all records in the group have the same header info
                 purchaseOrders.Add(poHeader);
 
@@ -60,7 +60,7 @@ namespace PALM.DeveloperTools.API.Helpers.Mappers
                     flatPo.POQuantity,
                 });
 
-                foreach(var groupedPOByLine in groupedPOsByLines)
+                foreach (var groupedPOByLine in groupedPOsByLines)
                 {
                     // Setup line
                     POLineDetails poLineDetails = new POLineDetails();
@@ -102,7 +102,7 @@ namespace PALM.DeveloperTools.API.Helpers.Mappers
                         flatPo.AssetProfileID
                     });
 
-                    foreach(var groupedPOByDistLine in groupedPOsByDistLines)
+                    foreach (var groupedPOByDistLine in groupedPOsByDistLines)
                     {
                         // Should be single results by this point, at the lowest level
                         PODistributionDetails poDistributionDetails = new();

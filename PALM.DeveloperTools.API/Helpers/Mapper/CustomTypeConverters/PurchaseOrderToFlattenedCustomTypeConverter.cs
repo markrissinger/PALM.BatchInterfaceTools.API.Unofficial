@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using PALM.DeveloperTools.API.DTO;
-using PALM.InterfaceLayouts.Unofficial.Entities.InterfaceLayouts.PurchaseOrders.InboundEncumbranceLoad;
+using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PALM.DeveloperTools.API.Helpers.Mappers
+namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
 {
     internal class PurchaseOrderToFlattenedCustomTypeConverter : ITypeConverter<List<POHeaderDetails>, List<FlattenedPurchaseOrder>>
     {
@@ -64,7 +64,7 @@ namespace PALM.DeveloperTools.API.Helpers.Mappers
                     flattenedPurchaseOrders.Add(flattenedPurchaseOrder);
                 }
             }
-            
+
 
             return flattenedPurchaseOrders;
         }

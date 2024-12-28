@@ -1,19 +1,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using PALM.DeveloperTools.API.Helpers.Mappers;
-using PALM.InterfaceLayouts.Unofficial.Entities.InterfaceLayouts.PurchaseOrders.InboundEncumbranceLoad;
-using PALM.InterfaceLayouts.Unofficial.Interfaces.PurchaseOrders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+
+builder.Services.AddCors();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Automapper
-builder.Services.AddAutoMapper(cfg => MapperConfig.MapperConfiguration());
+builder.Services.AddAutoMapper(cfg => cfg.MapperConfiguration());
 
 
 //builder.Services.AddScoped<IPOHeaderDetails, POHeaderDetails>();
@@ -29,7 +29,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors(cfg =>
+{
+    cfg.AllowAnyHeader();
+    cfg.AllowAnyMethod();
+    cfg.AllowAnyOrigin();
+});
+
+//app.UseAuthorization();
 
 app.MapControllers();
 
