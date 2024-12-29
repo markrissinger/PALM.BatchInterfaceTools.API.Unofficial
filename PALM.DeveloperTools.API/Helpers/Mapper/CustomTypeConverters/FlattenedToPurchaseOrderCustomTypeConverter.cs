@@ -90,6 +90,7 @@ namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
                         flatPo.Category,
                         flatPo.StateProgram,
                         flatPo.Grant,
+                        flatPo.Contract,
                         flatPo.OA1,
                         flatPo.OA2,
                         flatPo.PCBusinessUnit,
@@ -161,6 +162,7 @@ namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
             destination.Category = source.Category;
             destination.StateProgram = source.StateProgram;
             destination.Grant = source.Grant;
+            destination.Contract = source.Contract;
             destination.OA1 = source.OA1;
             destination.OA2 = source.OA2;
             destination.PCBusinessUnit = source.PCBusinessUnit;

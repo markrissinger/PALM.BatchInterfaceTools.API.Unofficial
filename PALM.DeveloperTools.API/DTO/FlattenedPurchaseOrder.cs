@@ -21,7 +21,7 @@ namespace PALM.DeveloperTools.API.DTO
         [StringLength(maximumLength: 5, MinimumLength = 5)]
         public string? BusinessUnit { get; set; }
 
-        [StringLength(maximumLength: 10, MinimumLength = 4)]
+        [StringLength(maximumLength: 10, MinimumLength = 10)]
         public string? POID { get; set; }
 
         [AllowedValues(["Y", "N", null])]
@@ -63,9 +63,10 @@ namespace PALM.DeveloperTools.API.DTO
         [Range(0, 99999)]
         public int LineNumber { get; set; }
 
-        [StringLength(maximumLength: 18, MinimumLength = 18)]
+        [StringLength(maximumLength: 18, MinimumLength = 1)]
         public string? CategoryCode { get; set; }
 
+        [StringLength(maximumLength: 3, MinimumLength = 1)]
         public string? UnitOfMeasure { get; set; }
 
         [AllowedValues(["Y", "N", null])]
@@ -118,6 +119,9 @@ namespace PALM.DeveloperTools.API.DTO
 
         [StringLength(maximumLength: 1, MinimumLength = 5)]
         public string? Grant { get; set; }
+
+        [StringLength(maximumLength: 1, MinimumLength = 10)]
+        public string? Contract { get; set; }
 
         [StringLength(maximumLength: 1, MinimumLength = 5)]
         public string? OA1 { get; set; }
