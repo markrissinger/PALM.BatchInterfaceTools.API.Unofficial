@@ -20,6 +20,14 @@ builder.Services.AddAutoMapper(cfg => cfg.MapperConfiguration());
 
 var app = builder.Build();
 
+// Must be listed before the Swagger
+app.UseCors(cfg =>
+{
+    cfg.AllowAnyHeader();
+    cfg.AllowAnyMethod();
+    cfg.AllowAnyOrigin();
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -28,13 +36,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseCors(cfg =>
-{
-    cfg.AllowAnyHeader();
-    cfg.AllowAnyMethod();
-    cfg.AllowAnyOrigin();
-});
 
 //app.UseAuthorization();
 

@@ -39,7 +39,9 @@ namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
                                 MapPOHeader(poHeader, flattenedPurchaseOrder);
                                 MapPOLine(poLine, flattenedPurchaseOrder);
                                 if (hasShipDetails)
+#pragma warning disable CS8604 // bool is confirming this won't be null
                                     MapPOShipLine(poLine.POLineShipDetails, flattenedPurchaseOrder);
+#pragma warning restore CS8604 // bool is confirming this won't be null
                                 MapPODistributionLine(distLine, flattenedPurchaseOrder);
                                 flattenedPurchaseOrders.Add(flattenedPurchaseOrder);
                             }
@@ -51,7 +53,9 @@ namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
                             MapPOHeader(poHeader, flattenedPurchaseOrder);
                             MapPOLine(poLine, flattenedPurchaseOrder);
                             if (hasShipDetails)
+#pragma warning disable CS8604 // bool is confirming this won't be null
                                 MapPOShipLine(poLine.POLineShipDetails, flattenedPurchaseOrder);
+#pragma warning restore CS8604 // bool is confirming this won't be null
                             flattenedPurchaseOrders.Add(flattenedPurchaseOrder);
                         }
                     }
