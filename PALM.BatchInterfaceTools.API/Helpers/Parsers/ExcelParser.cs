@@ -4,7 +4,7 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 
-namespace PALM.DeveloperTools.API.Helpers.Parsers
+namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
 {
     public static class ExcelParser
     {
@@ -49,20 +49,40 @@ namespace PALM.DeveloperTools.API.Helpers.Parsers
 
             List<Exception> exceptions = new List<Exception>();
         
-            var results = worksheet.Rows.Cast<DataRow>().Select((row, c) =>
+            var results = worksheet.Rows.Cast<DataRow>().Select((row, index) =>
             {
                 T instance = new();                
 
                 foreach(var property in instanceProperties)
                 {
                     var propertyType = property.PropertyType;
-                    var value = ParsedValue(property, row[property.Name]);
 
-                    property.SetValue(instance, value);
+                    try
+                    {
+                        var value = ParsedValue(property, row[property.Name]);
+
+                        property.SetValue(instance, value);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex is FormatException || ex is InvalidCastException || ex is ArgumentException)
+                        {
+                            exceptions.Add(new Exception($"{property.Name} on row {index + 1} was not able to be parsed correctly.", ex));
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
                 }
 
                 return instance;
-            });
+            }).ToList(); // ToList is needed in order to capture the exceptions here
+
+            if (exceptions.Count > 0)
+            {
+                throw new AggregateException(exceptions.ToArray()) { };
+            }
         
             return results;
         }

@@ -1,4 +1,4 @@
-namespace PALM.DeveloperTools.Tests
+namespace PALM.BatchInterfaceTools.Tests
 {
     public class UnitTest1
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using PALM.DeveloperTools.API.DTO;
-using PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters;
+using PALM.BatchInterfaceTools.API.DTO;
+using PALM.BatchInterfaceTools.API.Helpers.Mapper.CustomTypeConverters;
 using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PALM.DeveloperTools.API.Helpers.Mappers
+namespace PALM.BatchInterfaceTools.API.Helpers.Mappers
 {
     internal static class MapperConfig
     {

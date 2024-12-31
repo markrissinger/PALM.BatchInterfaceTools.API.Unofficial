@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static PALM.InterfaceLayouts.Unofficial.Constants.PurchaseOrdersConstants;
 
-namespace PALM.DeveloperTools.API.DTO
+namespace PALM.BatchInterfaceTools.API.DTO
 {
     public class FlattenedPurchaseOrder : IPOHeaderDetails, IPOLineDetails, IPOLineShipDetails, IPODistributionDetails
     {

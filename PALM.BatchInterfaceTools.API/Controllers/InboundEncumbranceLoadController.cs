@@ -1,15 +1,15 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PALM.DeveloperTools.API.Constants;
-using PALM.DeveloperTools.API.DTO;
-using PALM.DeveloperTools.API.Helpers.Parsers;
-using PALM.DeveloperTools.API.Helpers.Utilities;
+using PALM.BatchInterfaceTools.API.Constants;
+using PALM.BatchInterfaceTools.API.DTO;
+using PALM.BatchInterfaceTools.API.Helpers.Parsers;
+using PALM.BatchInterfaceTools.API.Helpers.Utilities;
 using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using PALM.InterfaceLayouts.Unofficial.Extensions;
 using System.Net;
 using System.Text;
 
-namespace PALM.DeveloperTools.API.Controllers
+namespace PALM.BatchInterfaceTools.API.Controllers
 {
     //todo: add validation step after getting DTOs
     [ApiController] 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PALM.DeveloperTools.API.DTO;
+using PALM.BatchInterfaceTools.API.DTO;
 using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PALM.DeveloperTools.API.Helpers.Mapper.CustomTypeConverters
+namespace PALM.BatchInterfaceTools.API.Helpers.Mapper.CustomTypeConverters
 {
     internal class PurchaseOrderToFlattenedCustomTypeConverter : ITypeConverter<List<POHeaderDetails>, List<FlattenedPurchaseOrder>>
     {

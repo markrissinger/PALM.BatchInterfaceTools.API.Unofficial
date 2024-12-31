@@ -1,0 +1,6 @@
+@PALM.BatchInterfaceTools.API_HostAddress = http://localhost:5056
+
+//GET {{PALM.BatchInterfaceTools.API_HostAddress}}/
+//Accept: application/json
+
+###

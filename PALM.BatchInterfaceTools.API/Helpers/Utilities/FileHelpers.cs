@@ -1,4 +1,4 @@
-﻿namespace PALM.DeveloperTools.API.Helpers.Utilities
+﻿namespace PALM.BatchInterfaceTools.API.Helpers.Utilities
 {
     public static class FileHelpers
     {

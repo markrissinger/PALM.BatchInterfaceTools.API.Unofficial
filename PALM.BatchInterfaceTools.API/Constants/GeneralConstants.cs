@@ -1,4 +1,4 @@
-﻿namespace PALM.DeveloperTools.API.Constants
+﻿namespace PALM.BatchInterfaceTools.API.Constants
 {
     public class GeneralConstants
     {

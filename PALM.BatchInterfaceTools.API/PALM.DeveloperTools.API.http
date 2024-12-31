@@ -1,6 +1,0 @@
-@PALM.DeveloperTools.API_HostAddress = http://localhost:5056
-
-GET {{PALM.DeveloperTools.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
