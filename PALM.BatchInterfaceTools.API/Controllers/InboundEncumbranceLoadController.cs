@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using PALM.BatchInterfaceTools.API.Constants;
 using PALM.BatchInterfaceTools.API.DTO;
 using PALM.BatchInterfaceTools.API.Helpers.Parsers;
@@ -92,7 +93,11 @@ namespace PALM.BatchInterfaceTools.API.Controllers
             string fileName = FileHelpers.FileNameGenerator(_interfaceId, agency, agencyBusinessSystem);
             string mimeType = GeneralConstants.TextFileMimeType;
 
-            return File(fileContents, mimeType, fileName);
+            var contentDisposition = new ContentDispositionHeaderValue("attachment");
+            contentDisposition.SetHttpFileName(fileName);
+            Response.Headers[HeaderNames.ContentDisposition] = contentDisposition.ToString();
+
+            return new FileContentResult(fileContents, mimeType);
         }
         #endregion
 
@@ -160,7 +165,7 @@ namespace PALM.BatchInterfaceTools.API.Controllers
             // Convert Domain --> byte[]
             StringBuilder fileContents = poHeaderDetails.WriteRecordsToStringBuilder();
 
-            return new JsonResult(fileContents);
+            return new JsonResult(fileContents.ToString());
         }
         #endregion
     }

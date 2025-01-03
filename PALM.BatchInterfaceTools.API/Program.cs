@@ -30,6 +30,7 @@ app.UseCors(cfg =>
     cfg.AllowAnyHeader();
     cfg.AllowAnyMethod();
     cfg.AllowAnyOrigin();
+    cfg.WithExposedHeaders("Content-Disposition");
 });
 
 // Configure the HTTP request pipeline.
