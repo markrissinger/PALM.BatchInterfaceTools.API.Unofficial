@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PALM.BatchInterfaceTools.API.DTO;
 using PALM.BatchInterfaceTools.API.Helpers.Mapper.CustomTypeConverters;
+using PALM.BatchInterfaceTools.Library.Entities.AccountsPayables.InboundVoucherLoad;
 using PALM.BatchInterfaceTools.Library.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,8 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Mappers
             #endregion
 
             #region Accounts Payable
-
+            // Accounts Payable DTO --> domain object
+            config.CreateMap<List<FlattenedVoucher>, List<VoucherHeader>>().ConvertUsing(new FlattenedToAccountsPayableCustomTypeConverter());
             #endregion
         }
     }
