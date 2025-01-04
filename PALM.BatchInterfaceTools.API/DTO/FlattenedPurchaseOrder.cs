@@ -1,11 +1,11 @@
-﻿using PALM.InterfaceLayouts.Unofficial.Interfaces.PurchaseOrders;
+﻿using PALM.BatchInterfaceTools.Library.Interfaces.PurchaseOrders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static PALM.InterfaceLayouts.Unofficial.Constants.PurchaseOrdersConstants;
+using static PALM.BatchInterfaceTools.Library.Constants.PurchaseOrdersConstants;
 
 namespace PALM.BatchInterfaceTools.API.DTO
 {
@@ -15,7 +15,7 @@ namespace PALM.BatchInterfaceTools.API.DTO
 
         #region Header
         [Required]
-        public POHeaderActions POHeaderAction { get; set; }
+        public POHeaderActionValues POHeaderAction { get; set; }
 
         [Required]
         [StringLength(maximumLength: 5, MinimumLength = 5)]
@@ -57,7 +57,7 @@ namespace PALM.BatchInterfaceTools.API.DTO
 
         #region Line
         [Required]
-        public POLineActions POLineAction { get; set; }
+        public POLineActionValues POLineAction { get; set; }
 
         [Required]
         [Range(0, 99999)]
@@ -87,7 +87,7 @@ namespace PALM.BatchInterfaceTools.API.DTO
 
         #region DistributionLine
         [Required]
-        public PODistributionActions PODistributionAction { get; set; }
+        public PODistributionActionValues PODistributionAction { get; set; }
 
         [Required]
         [Range(0, 99999)]

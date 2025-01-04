@@ -5,8 +5,8 @@ using PALM.BatchInterfaceTools.API.Constants;
 using PALM.BatchInterfaceTools.API.DTO;
 using PALM.BatchInterfaceTools.API.Helpers.Parsers;
 using PALM.BatchInterfaceTools.API.Helpers.Utilities;
-using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
-using PALM.InterfaceLayouts.Unofficial.Extensions;
+using PALM.BatchInterfaceTools.Library.Entities.PurchaseOrders.InboundEncumbranceLoad;
+using PALM.BatchInterfaceTools.Library.Extensions;
 using System.Net;
 using System.Text;
 

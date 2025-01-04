@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using PALM.BatchInterfaceTools.API.DTO;
-using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
+using PALM.BatchInterfaceTools.Library.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
 using System.Linq;

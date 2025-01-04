@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using PALM.BatchInterfaceTools.API.DTO;
 using PALM.BatchInterfaceTools.API.Helpers.Mapper.CustomTypeConverters;
-using PALM.InterfaceLayouts.Unofficial.Entities.PurchaseOrders.InboundEncumbranceLoad;
+using PALM.BatchInterfaceTools.Library.Entities.PurchaseOrders.InboundEncumbranceLoad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,11 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Mappers
 
             // Purchase Order DTO --> domain object
             config.CreateMap<List<FlattenedPurchaseOrder>, List<POHeaderDetails>>().ConvertUsing(new FlattenedToPurchaseOrderCustomTypeConverter());
-            #endregion            
+            #endregion
+
+            #region Accounts Payable
+
+            #endregion
         }
     }
 }
