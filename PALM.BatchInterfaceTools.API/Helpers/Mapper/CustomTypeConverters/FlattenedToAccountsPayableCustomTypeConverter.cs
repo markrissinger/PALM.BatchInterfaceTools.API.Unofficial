@@ -62,7 +62,7 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Mapper.CustomTypeConverters
                     flatAP.LineDescription,
                     flatAP.Quantity,
                     flatAP.UnitofMeasure,
-                    flatAP.PriceFormatted,
+                    flatAP.Price,
                     flatAP.MerchandiseAmount,
                     flatAP.RelatedVoucher,
                     flatAP.DistributionMethod,

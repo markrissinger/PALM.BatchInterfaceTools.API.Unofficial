@@ -1,6 +1,7 @@
 ﻿using static PALM.BatchInterfaceTools.Library.Constants.AccountsPayableConstants;
 using System.ComponentModel.DataAnnotations;
 using PALM.BatchInterfaceTools.Library.Interfaces.AccountsPayable;
+using System.Text.Json.Serialization;
 
 namespace PALM.BatchInterfaceTools.API.DTO
 {
@@ -70,14 +71,18 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [StringLength(maximumLength: 100)]
         public string? SourceSystemUserId { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public AuditValues? Audit { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EmergencyVoucherValues? EmergencyVoucher { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public FinalPaymentValues? FinalPayment { get; set; }
         #endregion
 
         #region VoucherPayment
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public PaymentMethodValues? PaymentMethod { get; set; }
 
         [StringLength(maximumLength: 6)]
@@ -87,14 +92,15 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [StringLength(maximumLength: 2)]
         public string? PaymentHandlingCode { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public PaymentHoldFlagValues? PaymentHoldFlag { get; set; }
-        internal string? PaymentHoldFlagFormatted { get { return PaymentHoldFlag.HasValue ? Enum.GetName(typeof(PaymentHoldFlagValues), PaymentHoldFlag) : string.Empty; } }
 
         [StringLength(maximumLength: 3)]
         public string? PaymentHoldReason { get; set; }
 
         public DateOnly? ScheduledPaymentDate { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public SeparatePaymentFlagValues? SeparatePaymentFlag { get; set; }
 
         [StringLength(maximumLength: 2)]
@@ -121,7 +127,6 @@ namespace PALM.BatchInterfaceTools.API.DTO
         public string? UnitofMeasure { get; set; }
 
         public decimal? Price { get; set; }
-        internal string? PriceFormatted { get { return Price?.ToString("0.00"); } }
 
         public decimal? MerchandiseAmount { get; set; }
 
@@ -236,6 +241,7 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [StringLength(maximumLength: 100)]
         public string? AssetIDReference { get; set; }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public AssetFlagValues? AssetFlag { get; set; }
 
         [StringLength(maximumLength: 5, MinimumLength = 5)]

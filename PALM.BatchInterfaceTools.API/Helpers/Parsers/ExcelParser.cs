@@ -89,12 +89,13 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
 
         private static object? ParsedValue(PropertyInfo propertyInfo, object value)
         {
-            // Handle null instances
+            // handle null instances
             if (value is System.DBNull || value is null)
                 return null;
 
             var propertyType = propertyInfo.PropertyType;
 
+            // standard enums
             if (propertyType.IsEnum)
             {
                 if (!string.IsNullOrWhiteSpace((string)value))
@@ -105,6 +106,26 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
                 {
                     return null;
                 }
+            }
+
+            // nullable enums
+            if (propertyType.IsNullableType())
+            {
+                var underlyingType = Nullable.GetUnderlyingType(propertyType);
+                if (underlyingType.IsEnum)
+                {
+                    if (!string.IsNullOrWhiteSpace((string)value))
+                    {
+                        var parsedValue = Enum.TryParse(underlyingType, value.ToString(), out var outValue) ? outValue : null;
+                        var x = 5;
+                        var y = x;
+                        return parsedValue;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }                
             }
 
             if (propertyType == typeof(DateOnly) || propertyType == typeof(DateOnly?))

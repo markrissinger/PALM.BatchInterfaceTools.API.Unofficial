@@ -19,9 +19,6 @@ builder.Services.AddSwaggerGen();
 // Automapper
 builder.Services.AddAutoMapper(cfg => cfg.MapperConfiguration());
 
-
-//builder.Services.AddScoped<IPOHeaderDetails, POHeaderDetails>();
-
 var app = builder.Build();
 
 // Must be listed before the Swagger
