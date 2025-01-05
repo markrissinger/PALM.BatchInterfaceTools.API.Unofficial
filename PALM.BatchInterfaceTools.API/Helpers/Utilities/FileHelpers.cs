@@ -33,7 +33,7 @@
         /// <returns></returns>
         public static string FileNameGenerator(string interfaceID, string? agency, string? agencyBusinessSystem)
         {
-            return $"{agency ?? "Agency"}_{interfaceID}_{agencyBusinessSystem ?? "ABS"}_{DateTime.Now:yyyyMMdd-HHmmss}.txt";
+            return $"{agency ?? "Agency"}_{interfaceID}_D_{agencyBusinessSystem ?? "ABS"}_{DateTime.Now:yyyyMMdd-HHmmss}.txt";
         }
     }
 }
