@@ -27,6 +27,10 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Mappers
             // Accounts Payable DTO --> domain object
             config.CreateMap<List<FlattenedVoucher>, List<VoucherHeader>>().ConvertUsing(new FlattenedToAccountsPayableCustomTypeConverter());
             #endregion
+
+            #region Commitment Control
+
+            #endregion
         }
     }
 }

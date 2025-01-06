@@ -63,7 +63,7 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         /// <summary>
         /// Converts provided flat Purchase Order data to a PALM specified flat file.
         /// </summary>
-        /// <param name="poHeaderDetails">Flattened (DTO) version of Purchase Orders to be converted.</param>
+        /// <param name="flattenedPurchaseOrders">Flattened (DTO) version of Purchase Orders to be converted.</param>
         /// <param name="agency">Agency ID (Business Unit) to be used in the returned file name.</param>
         /// <param name="agencyBusinessSystem">Agency Business System (ABS) acronymn to be used in the returned file name.</param>
         /// <returns>Flat/text file based on the provided Purchase Order data in PALM specified format.</returns>
@@ -71,9 +71,9 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         public async Task<IActionResult> FlattenedPurchaseOrdersToInboundFile(IEnumerable<FlattenedPurchaseOrder> flattenedPurchaseOrders, string? agency, string? agencyBusinessSystem)
         {
             // Convert DTO --> Domain
-            IEnumerable<POHeaderDetails> poHeaders = _mapper.Map<List<POHeaderDetails>>(flattenedPurchaseOrders.ToList());
+            IEnumerable<POHeaderDetails> purchaseOrders = _mapper.Map<List<POHeaderDetails>>(flattenedPurchaseOrders.ToList());
 
-            return await POHeaderDetailsToInboundFile(poHeaders, agency, agencyBusinessSystem);
+            return await POHeaderDetailsToInboundFile(purchaseOrders, agency, agencyBusinessSystem);
         }
 
         /// <summary>
@@ -107,8 +107,6 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         /// Converts provided Excel file with Purchase Order data to text output based on PALM specified flat file.
         /// </summary>
         /// <param name="file">Input Excel file based on appropriate template here. Copy can be found: </param>
-        /// <param name="agency">Agency ID (Business Unit) to be used in the returned file name.</param>
-        /// <param name="agencyBusinessSystem">Agency Business System (ABS) acronymn to be used in the returned file name.</param>
         /// <returns>Flat/text file based on the provided Purchase Order data in PALM specified format.</returns>
         /// <exception cref="InvalidDataException">Will throw if input file is not the correct format.</exception>
         [HttpPost("ExcelToInboundFileContents")]
@@ -139,9 +137,7 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         /// <summary>
         /// Converts provided flat Purchase Order data to text output based on PALM specified flat file.
         /// </summary>
-        /// <param name="poHeaderDetails">Flattened (DTO) version of Purchase Orders to be converted.</param>
-        /// <param name="agency">Agency ID (Business Unit) to be used in the returned file name.</param>
-        /// <param name="agencyBusinessSystem">Agency Business System (ABS) acronymn to be used in the returned file name.</param>
+        /// <param name="flattenedPurchaseOrders">Flattened (DTO) version of Purchase Orders to be converted.</param>
         /// <returns>Flat/text file based on the provided Purchase Order data in PALM specified format.</returns>
         [HttpPost("FlattenedPurchaseOrdersToInboundFileContents")]
         public async Task<JsonResult> FlattenedPurchaseOrdersToInboundFileContents(IEnumerable<FlattenedPurchaseOrder> flattenedPurchaseOrders)
@@ -155,15 +151,13 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         /// <summary>
         /// Converts provided POHeaderDetails to text output based on PALM specified flat file.
         /// </summary>
-        /// <param name="poHeaderDetails">Flattened (DTO) version of Purchase Orders to be converted.</param>
-        /// <param name="agency">Agency ID (Business Unit) to be used in the returned file name.</param>
-        /// <param name="agencyBusinessSystem">Agency Business System (ABS) acronymn to be used in the returned file name.</param>
+        /// <param name="purchaseOrders">Flattened (DTO) version of Purchase Orders to be converted.</param>
         /// <returns>Flat/text file based on the provided Purchase Order data in PALM specified format.</returns>
         [HttpPost("POHeaderDetailsToInboundFileContents")]
-        public async Task<JsonResult> POHeaderDetailsToInboundFileContents(IEnumerable<POHeaderDetails> poHeaderDetails)
+        public async Task<JsonResult> POHeaderDetailsToInboundFileContents(IEnumerable<POHeaderDetails> purchaseOrders)
         {
             // Convert Domain --> byte[]
-            StringBuilder fileContents = poHeaderDetails.WriteRecordsToStringBuilder();
+            StringBuilder fileContents = purchaseOrders.WriteRecordsToStringBuilder();
 
             return new JsonResult(fileContents.ToString());
         }
