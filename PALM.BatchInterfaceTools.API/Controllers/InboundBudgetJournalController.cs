@@ -71,7 +71,7 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         public async Task<IActionResult> FlattenedBudgetJournalsToInboundFile(IEnumerable<FlattenedBudgetJournal> flattenedBudgetJournals, string? agency, string? agencyBusinessSystem)
         {
             // Convert DTO --> Domain
-            IEnumerable<KKBudgetHeader> budgetJournals = _mapper.Map<List<KKBudgetHeader>>(flattenedBudgetJournals.ToList());
+            List<KKBudgetHeader> budgetJournals = _mapper.Map<List<KKBudgetHeader>>(flattenedBudgetJournals.ToList());
 
             return await BudgetJournalsToInboundFile(budgetJournals, agency, agencyBusinessSystem);
         }

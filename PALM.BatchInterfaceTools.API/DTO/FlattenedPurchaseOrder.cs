@@ -63,10 +63,10 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [Range(0, 99999)]
         public int LineNumber { get; set; }
 
-        [StringLength(maximumLength: 18, MinimumLength = 1)]
+        [StringLength(maximumLength: 18)]
         public string? CategoryCode { get; set; }
 
-        [StringLength(maximumLength: 3, MinimumLength = 1)]
+        [StringLength(maximumLength: 3)]
         public string? UnitOfMeasure { get; set; }
 
         [AllowedValues(["Y", "N", null])]
@@ -75,7 +75,7 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [AllowedValues(["G", "S", null])]
         public string? PhysicalNature { get; set; }
 
-        [StringLength(maximumLength: 254, MinimumLength = 1)]
+        [StringLength(maximumLength: 254)]
         public string? ItemDescription { get; set; }
         #endregion
 

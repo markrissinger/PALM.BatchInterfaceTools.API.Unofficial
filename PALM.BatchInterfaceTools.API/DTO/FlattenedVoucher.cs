@@ -199,34 +199,34 @@ namespace PALM.BatchInterfaceTools.API.DTO
         [StringLength(maximumLength: 10, MinimumLength = 10)]
         public string? StateProgram { get; set; }
 
-        [StringLength(maximumLength: 5, MinimumLength = 1)]
+        [StringLength(maximumLength: 5)]
         public string? Grant { get; set; }
 
-        [StringLength(maximumLength: 10, MinimumLength = 1)]
+        [StringLength(maximumLength: 10)]
         public string? Contract { get; set; }
 
-        [StringLength(maximumLength: 5, MinimumLength = 1)]
+        [StringLength(maximumLength: 5)]
         public string? OA1 { get; set; }
 
-        [StringLength(maximumLength: 10, MinimumLength = 1)]
+        [StringLength(maximumLength: 10)]
         public string? OA2 { get; set; }
 
         [StringLength(maximumLength: 5, MinimumLength = 5)]
         public string? PCBusinessUnit { get; set; }
 
-        [StringLength(maximumLength: 15, MinimumLength = 1)]
+        [StringLength(maximumLength: 15)]
         public string? Project { get; set; }
 
-        [StringLength(maximumLength: 15, MinimumLength = 1)]
+        [StringLength(maximumLength: 15)]
         public string? Activity { get; set; }
 
-        [StringLength(maximumLength: 5, MinimumLength = 1)]
+        [StringLength(maximumLength: 5)]
         public string? PCSourceType { get; set; }
 
-        [StringLength(maximumLength: 5, MinimumLength = 1)]
+        [StringLength(maximumLength: 5)]
         public string? PCCategory { get; set; }
 
-        [StringLength(maximumLength: 5, MinimumLength = 1)]
+        [StringLength(maximumLength: 5)]
         public string? Subcategory { get; set; }
 
         [Required]
