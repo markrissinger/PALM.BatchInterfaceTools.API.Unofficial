@@ -47,7 +47,7 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
 
             IEnumerable<PropertyInfo> instanceProperties = typeof(T).GetProperties();
 
-            List<Exception> exceptions = new List<Exception>();
+            List<string> exceptions = new();
         
             var results = worksheet.Rows.Cast<DataRow>().Select((row, index) =>
             {
@@ -67,7 +67,7 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
                     {
                         if (ex is FormatException || ex is InvalidCastException || ex is ArgumentException)
                         {
-                            exceptions.Add(new Exception($"{property.Name} on row {index + 1} was not able to be parsed correctly.", ex));
+                            exceptions.Add($"{property.Name} on row {index + 1} was not able to be parsed correctly.");
                         }
                         else
                         {
@@ -81,7 +81,7 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
 
             if (exceptions.Count > 0)
             {
-                throw new AggregateException(exceptions.ToArray()) { };
+                throw new Exception(string.Join(Environment.NewLine, exceptions));
             }
         
             return results;
