@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using PALM.BatchInterfaceTools.API.Constants;
@@ -7,6 +8,7 @@ using PALM.BatchInterfaceTools.API.Helpers.Parsers;
 using PALM.BatchInterfaceTools.API.Helpers.Utilities;
 using PALM.BatchInterfaceTools.Library.Entities.AccountsPayables.InboundVoucherLoad;
 using PALM.BatchInterfaceTools.Library.Extensions;
+using System.Net;
 using System.Text;
 
 namespace PALM.BatchInterfaceTools.API.Controllers
@@ -83,7 +85,7 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         /// <param name="agencyBusinessSystem">Agency Business System (ABS) acronymn to be used in the returned file name.</param>
         /// <returns>Flat/text file based on the provided Accounts Payable data in PALM specified format.</returns>
         //[HttpPost("POHeaderDetailsToInboundFile")] keeping this private due to potentially sensitive data that could be passed in from non-DTO object
-        private async Task<IActionResult> VoucherHeadersToInboundFile(IEnumerable<VoucherHeader> voucherHeaders, string? agency, string? agencyBusinessSystem)
+        private async Task<FileContentResult> VoucherHeadersToInboundFile(IEnumerable<VoucherHeader> voucherHeaders, string? agency, string? agencyBusinessSystem)
         {
             // Convert Domain --> byte[]
             byte[] fileContents = voucherHeaders.WriteRecordsToByteArray();

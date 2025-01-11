@@ -81,7 +81,9 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Parsers
 
             if (exceptions.Count > 0)
             {
-                throw new Exception(string.Join(Environment.NewLine, exceptions));
+                AggregateException ex = new AggregateException();
+                ex.Data[Constants.GeneralConstants.AggregateExceptionErrorMessage] = string.Join(Environment.NewLine, exceptions);
+                throw ex;
             }
         
             return results;

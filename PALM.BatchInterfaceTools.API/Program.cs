@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using PALM.BatchInterfaceTools.API.Helpers.Handlers;
 using PALM.BatchInterfaceTools.API.Helpers.Mappers;
 using System.Text.Json.Serialization;
 
@@ -18,6 +19,9 @@ builder.Services.AddSwaggerGen();
 
 // Automapper
 builder.Services.AddAutoMapper(cfg => cfg.MapperConfiguration());
+
+// Exception Handling
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
 
@@ -42,5 +46,7 @@ app.UseHttpsRedirection();
 //app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseExceptionHandler(_ => { });
 
 app.Run();
