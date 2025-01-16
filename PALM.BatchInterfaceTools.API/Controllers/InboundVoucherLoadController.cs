@@ -6,6 +6,7 @@ using PALM.BatchInterfaceTools.API.Constants;
 using PALM.BatchInterfaceTools.API.DTO;
 using PALM.BatchInterfaceTools.API.Helpers.Parsers;
 using PALM.BatchInterfaceTools.API.Helpers.Utilities;
+using PALM.BatchInterfaceTools.API.Infrastructure.Repositories;
 using PALM.BatchInterfaceTools.Library.Entities.AccountsPayables.InboundVoucherLoad;
 using PALM.BatchInterfaceTools.Library.Extensions;
 using System.Net;
@@ -18,12 +19,14 @@ namespace PALM.BatchInterfaceTools.API.Controllers
     [Route("[controller]")]
     public class InboundVoucherLoadController : ControllerBase
     {
-        public InboundVoucherLoadController(IMapper mapper)
+        public InboundVoucherLoadController(IMapper mapper, RunHistoryRepository runHistoryRepository)
         {
             _mapper = mapper;
+            _runHistoryRepository = runHistoryRepository;
         }
 
         private readonly IMapper _mapper;
+        private readonly RunHistoryRepository _runHistoryRepository;
         private const string _interfaceId = "API002";
 
         #region File Output
@@ -98,6 +101,15 @@ namespace PALM.BatchInterfaceTools.API.Controllers
             contentDisposition.SetHttpFileName(fileName);
             Response.Headers[HeaderNames.ContentDisposition] = contentDisposition.ToString();
 
+            try
+            {
+                await _runHistoryRepository.AddRunHistory(_interfaceId, voucherHeaders.Count());
+            }
+            catch (Exception ex)
+            {
+                // todo: need to log exception
+            }
+
             return new FileContentResult(fileContents, mimeType);
         }
         #endregion
@@ -159,6 +171,15 @@ namespace PALM.BatchInterfaceTools.API.Controllers
         {
             // Convert Domain --> byte[]
             StringBuilder fileContents = voucherHeaders.WriteRecordsToStringBuilder(false);
+
+            try
+            {
+                await _runHistoryRepository.AddRunHistory(_interfaceId, voucherHeaders.Count());
+            }
+            catch (Exception ex)
+            {
+                // todo: need to log exception
+            }
 
             return new JsonResult(fileContents.ToString());
         }

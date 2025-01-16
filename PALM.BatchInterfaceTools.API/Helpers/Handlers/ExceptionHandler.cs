@@ -13,7 +13,6 @@ namespace PALM.BatchInterfaceTools.API.Helpers.Handlers
             {
                 // Your response object
                 var error = new { message = exception.Data[Constants.GeneralConstants.AggregateExceptionErrorMessage] };
-                //httpContext.Response.Headers[Constants.GeneralConstants.AggregateExceptionErrorMessage] = exception.Data[Constants.GeneralConstants.AggregateExceptionErrorMessage]?.ToString();
                 await httpContext.Response.WriteAsJsonAsync(error, cancellationToken);
             }
             else

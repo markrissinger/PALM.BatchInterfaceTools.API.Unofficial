@@ -1,6 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PALM.BatchInterfaceTools.API.Helpers.Handlers;
 using PALM.BatchInterfaceTools.API.Helpers.Mappers;
+using PALM.BatchInterfaceTools.API.Infrastructure.Data;
+using PALM.BatchInterfaceTools.API.Infrastructure.Repositories;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +25,16 @@ builder.Services.AddAutoMapper(cfg => cfg.MapperConfiguration());
 
 // Exception Handling
 builder.Services.AddExceptionHandler<ExceptionHandler>();
+
+builder.Services.AddDbContext<AzureSQLContext>(options =>
+{
+#if DEBUG
+    options.UseAzureSql(File.ReadAllText(@"C:\Users\18502\source\repos\pbitconnstr.txt"));
+#else
+    options.UseAzureSql(builder.Configuration.GetConnectionString("AzureSQLContext"));
+#endif
+});
+builder.Services.AddScoped<RunHistoryRepository>();
 
 var app = builder.Build();
 
