@@ -28,8 +28,9 @@ builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 builder.Services.AddDbContext<AzureSQLContext>(options =>
 {
+    var x = File.ReadAllText(@"C:\Users\18502\source\repos\pbitconnstr.txt");
 #if DEBUG
-    options.UseAzureSql(File.ReadAllText(@"C:\Users\18502\source\repos\pbitconnstr.txt"));
+    options.UseAzureSql(x);
 #else
     options.UseAzureSql(builder.Configuration.GetConnectionString("AzureSQLContext"));
 #endif

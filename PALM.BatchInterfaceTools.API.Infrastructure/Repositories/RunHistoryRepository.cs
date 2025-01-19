@@ -25,12 +25,18 @@ namespace PALM.BatchInterfaceTools.API.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task GetRunHistory(string? interfaceId)
+        public async Task<List<RunHistoryDTO>> GetRunHistory(DateTime? startDate, DateTime? endDate, string? interfaceId)
         {
-            if (string.IsNullOrEmpty(interfaceId))
-                await _context.RunHistoryDTOs.ToListAsync();
-            else
-                await _context.RunHistoryDTOs.Where(x => x.InterfaceId == interfaceId).ToListAsync();
+            List<RunHistoryDTO> runHistoryDTOs = await _context.RunHistoryDTOs.ToListAsync();
+
+            if (!string.IsNullOrEmpty(interfaceId))
+                runHistoryDTOs = runHistoryDTOs.Where(x => x.InterfaceId == interfaceId).ToList();
+            if (startDate != null)
+                runHistoryDTOs = runHistoryDTOs.Where(x => x.CreateTimestamp >= startDate).ToList();
+            if (endDate != null)
+                runHistoryDTOs = runHistoryDTOs.Where(x => x.CreateTimestamp >= startDate).ToList();
+
+            return runHistoryDTOs;
         }
     }
 }
